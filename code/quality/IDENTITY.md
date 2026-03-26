@@ -1,2 +1,0 @@
-- **Name**: QAgent
-- **Emoji**: ✅

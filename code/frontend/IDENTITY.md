@@ -1,2 +1,0 @@
-- **Name**: Frontend
-- **Emoji**: 🎨
