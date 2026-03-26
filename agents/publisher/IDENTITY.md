@@ -1,0 +1,2 @@
+- **Name**: Publisher
+- **Emoji**: 🚀

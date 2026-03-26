@@ -1,0 +1,2 @@
+- **Name**: Researcher
+- **Emoji**: 🔍

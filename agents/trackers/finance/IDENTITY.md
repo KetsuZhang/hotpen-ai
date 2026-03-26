@@ -1,0 +1,2 @@
+- **Name**: HotTracker-Finance
+- **Emoji**: 💰
