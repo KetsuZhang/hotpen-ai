@@ -14,20 +14,64 @@
 ```
 hotpen-ai/
 ├── docs/                    # 项目文档
-├── agents/                  # Agent 配置
-│   └── trackers/           # 热点抓取 Agents
-├── code/                   # 源代码
-│   ├── backend/
-│   ├── frontend/
-│   ├── test/
-│   └── quality/
+│   ├── HotPen-AI-需求分析.md
+│   └── HotPen-AI-技术设计.md
+│
+├── agents/                   # Agent 配置 (14个)
+│   ├── trackers/           # 热点抓取 (5个)
+│   ├── aggregator/         # 聚合器
+│   ├── researcher/         # 研究 Agent
+│   ├── writer/             # 撰写 Agent
+│   ├── publisher/          # 发布 Agent
+│   ├── scheduler/          # 调度 Agent
+│   ├── backend/            # 后端代码开发
+│   ├── frontend/           # 前端代码开发
+│   ├── testagent/           # 测试代码开发
+│   └── qagent/             # 代码质检
+│
+├── code/                    # 源代码目录
+│
 └── README.md
 ```
+
+## Agents 清单
+
+| Agent | 职责 | Emoji |
+|-------|------|-------|
+| HotTracker-Tech | 科技热点抓取 | 🔥 |
+| HotTracker-Finance | 财经热点抓取 | 💰 |
+| HotTracker-Entertainment | 娱乐热点抓取 | 🎬 |
+| HotTracker-Social | 社会热点抓取 | 📰 |
+| HotTracker-AI | AI 热点抓取 | 🤖 |
+| Aggregator | 热点聚合与评分 | 🔄 |
+| Researcher | 深度研究 | 🔍 |
+| Writer | 内容生成 | ✍️ |
+| Publisher | 多平台发布 | 🚀 |
+| Scheduler | 任务调度 | ⏰ |
+| Backend | 后端代码开发 | 🐍 |
+| Frontend | 前端代码开发 | 🎨 |
+| TestAgent | 测试代码开发 | 🧪 |
+| QAgent | 代码质检 | ✅ |
+
+## 技术栈
+
+- **Agent 编排**: OpenClaw
+- **后端**: Python + FastAPI
+- **前端**: Vue 3 + Element Plus
+- **数据库**: SQLite (开发) / PostgreSQL (生产)
 
 ## 快速开始
 
 ```bash
+# 克隆项目
 git clone https://github.com/KetsuZhang/hotpen-ai.git
+
+# 安装后端依赖
+pip install -r code/backend/requirements.txt
+
+# 启动服务
+cd code/backend
+python -m uvicorn app.main:app --reload
 ```
 
 ## 文档
@@ -37,4 +81,4 @@ git clone https://github.com/KetsuZhang/hotpen-ai.git
 
 ---
 
-MIT License
+MIT License - Made with ❤️ by OpenClaw
