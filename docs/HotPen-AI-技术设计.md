@@ -97,29 +97,29 @@ CREATE TABLE publications (
 
 ## 三、Agent 清单
 
-### 3.1 业务层 Agents
+### 3.1 内容生产 Agents (8个)
 
-| Agent | 职责 | 位置 |
-|-------|------|------|
-| HotTracker-Tech | 科技热点抓取 | agents/trackers/tech/ |
-| HotTracker-Finance | 财经热点抓取 | agents/trackers/finance/ |
-| HotTracker-Entertainment | 娱乐热点抓取 | agents/trackers/entertainment/ |
-| HotTracker-Social | 社会热点抓取 | agents/trackers/social/ |
-| HotTracker-AI | AI 热点抓取 | agents/trackers/ai/ |
-| Aggregator | 热点聚合与评分 | agents/aggregator/ |
-| Researcher | 深度研究 + 论文引用 | agents/researcher/ |
-| Writer | 内容生成 | agents/writer/ |
-| Publisher | 多平台发布 | agents/publisher/ |
-| Scheduler | 任务调度 | agents/scheduler/ |
+| Agent | 职责 | 运行方式 |
+|-------|------|----------|
+| HotTracker-Tech | 科技热点抓取 | Cron 定时 |
+| HotTracker-Finance | 财经热点抓取 | Cron 定时 |
+| HotTracker-Entertainment | 娱乐热点抓取 | Cron 定时 |
+| HotTracker-Social | 社会热点抓取 | Cron 定时 |
+| HotTracker-AI | AI 热点抓取 | Cron 定时 |
+| Researcher | 深度研究 + 论文引用 | Cron 定时 |
+| Writer | 内容生成 | Cron 定时 |
+| Publisher | 多平台发布 | 触发/定时 |
 
-### 3.2 代码层 Agents
+### 3.2 开发 Agents (4个)
 
 | Agent | 职责 | 技术栈 |
 |-------|------|--------|
+| Architect | 架构设计 + 技术选型 | - |
 | Backend | 后端代码开发 | Python + FastAPI |
 | Frontend | 前端代码开发 | Vue 3 + Element Plus |
-| TestAgent | 测试代码开发 | pytest |
-| QAgent | 代码质检 | ruff + mypy |
+| QA | 代码质检 + 测试 | pytest, ruff |
+
+> **说明**：原文档中的 Aggregator（热点聚合）功能已合并到数据库查询层实现，Scheduler（任务调度）由 OpenClaw Cron 替代，无需独立 Agent。
 
 ---
 

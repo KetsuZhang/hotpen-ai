@@ -118,19 +118,23 @@
 | HotTracker-Social | 社会 | 人民日报、澎湃新闻 |
 | HotTracker-AI | AI | 机器之心、AI科技评论 |
 
-### 4.2 核心 Agents
+### 4.2 内容生产 Agents (8个)
 
-| Agent | 职能 |
-|-------|------|
-| **Aggregator** | 热点聚合、去重、评分 |
-| **Researcher** | 深度研究、学术论文检索 |
-| **Writer** | 内容生成（公众号/小红书）|
-| **Publisher** | 多平台发布 |
-| **Scheduler** | 任务调度与编排 |
-| **Backend** | 后端代码开发 |
-| **Frontend** | 前端代码开发 |
-| **TestAgent** | 测试代码开发 |
-| **QAgent** | 代码质检 |
+| Agent | 职能 | 运行方式 |
+|-------|------|----------|
+| **HotTracker ×5** | 各领域热点抓取 | Cron 定时 |
+| **Researcher** | 深度研究、学术论文检索 | Cron 定时 |
+| **Writer** | 内容生成（公众号/小红书）| Cron 定时 |
+| **Publisher** | 多平台发布 | 触发/定时 |
+
+### 4.3 开发 Agents (4个)
+
+| Agent | 职能 | 技术栈 |
+|-------|------|--------|
+| **Architect** | 架构设计 + 技术选型 | - |
+| **Backend** | 后端代码开发 | Python + FastAPI |
+| **Frontend** | 前端代码开发 | Vue 3 + Element Plus |
+| **QA** | 代码质检 + 测试 | pytest, ruff |
 
 ---
 

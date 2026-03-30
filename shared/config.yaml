@@ -1,0 +1,57 @@
+# HotPen AI 共享配置
+
+## 数据库
+database:
+  type: sqlite
+  path: ../shared/hotpen-ai.db
+
+## 内容生产线
+pipeline:
+  hottracker:
+    interval_minutes: 15
+    categories:
+      - tech
+      - finance
+      - entertainment
+      - social
+      - ai
+    sources:
+      tech:
+        - 36氪
+        - TechCrunch
+        - 虎嗅
+      finance:
+        - 财经网
+        - 同花顺
+        - 雪球
+      entertainment:
+        - 微博热搜
+        - 豆瓣
+        - 知乎热榜
+      social:
+        - 人民日报
+        - 澎湃新闻
+      ai:
+        - 机器之心
+        - 量子位
+  
+  researcher:
+    interval_hours: 1
+    max_events_per_run: 5
+  
+  writer:
+    interval_hours: 2
+  
+  publisher:
+    interval_hours: 4
+
+## 公众号配置
+wechat:
+  app_id: ""
+  app_secret: ""
+  api_key: ""
+
+## 开发配置
+dev:
+  code_dir: ../code/hotpen-ai
+  docs_dir: ../docs

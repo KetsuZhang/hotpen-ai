@@ -13,52 +13,96 @@
 
 ```
 hotpen-ai/
+├── agents/                   # Agent 配置 (12个)
+│   ├── pipeline/            # 内容生产线 (8个)
+│   │   ├── hottracker-tech/        # 📱 科技热点
+│   │   ├── hottracker-finance/    # 💹 财经热点
+│   │   ├── hottracker-entertainment/ # 🎬 娱乐热点
+│   │   ├── hottracker-social/    # 📰 社会热点
+│   │   ├── hottracker-ai/        # 🤖 AI热点
+│   │   ├── researcher/           # 🔬 深度研究
+│   │   ├── writer/              # ✍️ 内容撰写
+│   │   └── publisher/           # 📤 多平台发布
+│   │
+│   └── dev/                  # 开发团队 (4个)
+│       ├── architect/              # 🏗️ 架构设计
+│       ├── backend/               # ⚙️ 后端开发
+│       ├── frontend/              # 🎨 前端开发
+│       └── qa/                   # 🔍 代码质检
+│
+├── shared/                   # 共享资源
+│   ├── config.yaml          # 配置文件
+│   └── database.sql         # 数据库初始化
+│
+├── data/                    # 数据目录
+│   ├── raw/                 # 原始热点
+│   ├── researched/          # 研究报告
+│   ├── drafts/             # 待发布草稿
+│   └── published/          # 已发布
+│
+├── code/                    # 源代码目录
+│   └── hotpen-ai/
+│       ├── backend/         # Python + FastAPI
+│       └── frontend/       # Vue 3 + Element Plus
+│
 ├── docs/                    # 项目文档
 │   ├── HotPen-AI-需求分析.md
 │   └── HotPen-AI-技术设计.md
-│
-├── agents/                   # Agent 配置 (14个)
-│   ├── trackers/           # 热点抓取 (5个)
-│   ├── aggregator/         # 聚合器
-│   ├── researcher/         # 研究 Agent
-│   ├── writer/             # 撰写 Agent
-│   ├── publisher/          # 发布 Agent
-│   ├── scheduler/          # 调度 Agent
-│   ├── backend/            # 后端代码开发
-│   ├── frontend/           # 前端代码开发
-│   ├── testagent/           # 测试代码开发
-│   └── qagent/             # 代码质检
-│
-├── code/                    # 源代码目录
 │
 └── README.md
 ```
 
 ## Agents 清单
 
-| Agent | 职责 | Emoji |
-|-------|------|-------|
-| HotTracker-Tech | 科技热点抓取 | 🔥 |
-| HotTracker-Finance | 财经热点抓取 | 💰 |
-| HotTracker-Entertainment | 娱乐热点抓取 | 🎬 |
-| HotTracker-Social | 社会热点抓取 | 📰 |
-| HotTracker-AI | AI 热点抓取 | 🤖 |
-| Aggregator | 热点聚合与评分 | 🔄 |
-| Researcher | 深度研究 | 🔍 |
-| Writer | 内容生成 | ✍️ |
-| Publisher | 多平台发布 | 🚀 |
-| Scheduler | 任务调度 | ⏰ |
-| Backend | 后端代码开发 | 🐍 |
-| Frontend | 前端代码开发 | 🎨 |
-| TestAgent | 测试代码开发 | 🧪 |
-| QAgent | 代码质检 | ✅ |
+### 内容生产线 (8个)
+
+| Agent | 职责 | Emoji | 运行方式 |
+|-------|------|-------|----------|
+| HotTracker-Tech | 科技热点抓取 | 📱 | Cron 定时 |
+| HotTracker-Finance | 财经热点抓取 | 💹 | Cron 定时 |
+| HotTracker-Entertainment | 娱乐热点抓取 | 🎬 | Cron 定时 |
+| HotTracker-Social | 社会热点抓取 | 📰 | Cron 定时 |
+| HotTracker-AI | AI 热点抓取 | 🤖 | Cron 定时 |
+| Researcher | 深度研究 | 🔬 | Cron 定时 |
+| Writer | 内容生成 | ✍️ | Cron 定时 |
+| Publisher | 多平台发布 | 📤 | 触发/定时 |
+
+### 开发团队 (4个)
+
+| Agent | 职责 | Emoji | 技术栈 |
+|-------|------|-------|--------|
+| Architect | 架构设计 | 🏗️ | - |
+| Backend | 后端开发 | ⚙️ | Python + FastAPI |
+| Frontend | 前端开发 | 🎨 | Vue 3 + Element Plus |
+| QA | 代码质检 | 🔍 | pytest, ruff |
 
 ## 技术栈
 
 - **Agent 编排**: OpenClaw
+- **数据库**: SQLite (开发) / PostgreSQL (生产)
 - **后端**: Python + FastAPI
 - **前端**: Vue 3 + Element Plus
-- **数据库**: SQLite (开发) / PostgreSQL (生产)
+
+## 数据流
+
+```
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│  HotTrackers │───▶│  Researcher  │───▶│    Writer    │
+│  (Cron 定时) │    │  (Cron 定时) │    │  (Cron 定时) │
+└──────────────┘    └──────────────┘    └──────────────┘
+        │                   │                   │
+        ▼                   ▼                   ▼
+   status=raw      status=researched    status=written
+                                              │
+                                              ▼
+                                       ┌──────────────┐
+                                       │   Publisher  │
+                                       │  (触发/定时) │
+                                       └──────────────┘
+                                              │
+                                              ▼
+                                       status=published
+```
 
 ## 快速开始
 
@@ -66,12 +110,13 @@ hotpen-ai/
 # 克隆项目
 git clone https://github.com/KetsuZhang/hotpen-ai.git
 
-# 安装后端依赖
-pip install -r code/backend/requirements.txt
+# 初始化数据库
+sqlite3 shared/hotpen-ai.db < shared/database.sql
 
-# 启动服务
-cd code/backend
-python -m uvicorn app.main:app --reload
+# 启动后端服务
+cd code/hotpen-ai/backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
 ## 文档
